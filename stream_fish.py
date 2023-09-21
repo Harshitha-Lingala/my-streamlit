@@ -4,7 +4,11 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 df=pd.read_csv('Fish.csv')
-avg_height_by_species=df.groupby('Species')['Height'].mean().reset_index()
-plt.bar(avg_height_by_species['Species'],avg_height_by_species['Height'])
+avg_weight_by_species=df.groupby('Species')['Weight'].mean().reset_index()
+st.write(avg_weight_by_species)
+plt.bar(avg_weight_by_species['Species'],avg_weight_by_species['Weight'])
+plt.title('Average Weight of Species')
+plt.xlabel('Species')
+plt.ylabel('Avg Weight')
 st.pyplot(plt)
-                                
+                                    
