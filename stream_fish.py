@@ -6,7 +6,7 @@ df=pd.read_csv('Fish.csv')
 
 avg_weight_by_species=df.groupby('Species')['Weight'].mean().reset_index()
 
-plt.bar(avg_weight_by_species['Species'],avg_weight_by_species['Weight'])
+plt.bar(avg_weight_by_species['Species'],avg_weight_by_species['Weight'],c='y')
 plt.title('Average Weight of Species')
 plt.xlabel('Species')
 plt.ylabel('Avg Weight')
