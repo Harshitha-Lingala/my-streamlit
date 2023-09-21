@@ -1,5 +1,7 @@
 import streamlit as st
 import pandas as pd
+import matplotlib.pyplot as plt
 
 df=pd.read_csv('Fish.csv')
-st.bar_chart(df['Species'],height=df['Weight'],width=0.5)
+plt.hist(df['Species']
+st.pyplot(plt)
