@@ -2,35 +2,25 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 
-import streamlit as st
-import pandas as pd
-import matplotlib.pyplot as plt
-import numpy as np
+df=pd.read_csv('heart.csv')
 
-df=pd.read_csv('Fish.csv')
-avg_weight_by_species=df.groupby('Species')['Weight'].mean().reset_index().sort_values(by='Weight',ascending=True)
-avg_height_by_species=df.groupby('Species')['Height'].mean().reset_index().sort_values(by='Height',ascending=True)
+df_survived=df[df['chd']==0]
+df_dead=df[df['chd']==1]
+
+dead_famhist=df_dead.groupby('famhist')['chd'].count()
+survived_famhist=df_survived.groupby('famhist')['chd'].count()
+
+st.title('Family History of Heart Patients')
+
+plt.subplot(2,1,1)
+plt.pie(dead_famhist,labels=['Absent','Present'],autopct='%1.1f%%')
+plt.title('Family History of Patients succumbed to Heart Disease : Present vs. Absent')
 
 
-st.write(avg_weight_by_species)
-
-st.write(avg_height_by_species)
-
-plt.subplot(1,2,1)
-plt.bar(avg_height_by_species['Species'],avg_height_by_species['Height'])
-plt.title('Average Height of Species')
-plt.xlabel('Species')
-plt.ylabel('Avg Height')
-plt.xticks(rotation=45)
-
-plt.subplot(1,2,2)
-plt.bar(avg_weight_by_species['Species'],avg_weight_by_species['Weight'])
-plt.title('Average Weight of Species')
-plt.xlabel('Species')
-plt.ylabel('Avg Weight')
-plt.xticks(rotation=45)
-
-plt.tight_layout()
+plt.subplot(2,1,2)
+plt.pie(survived_famhist,labels=['Absent','Present'],autopct='%1.1f%%')
+plt.title('Family History of Patients survived a Heart condition : Present vs. Absent')
+plt.show()
 
 st.pyplot(plt)
                                 
